@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>HW10_UDOT</title>
+</head>
+
+<body class="wrapper">
+    <div class="block-scheme">
+        <h1>Required</h1>
+        <div id="required">
+            <pre>
+                    let messages = [
+                    "backspace",
+                    "enter",
+                    "shift",
+                    "control",
+                    "delete",
+                    "space",
+                    "subtract",
+                    "unshift",
+                    "begin",
+                    "began",
+                    "begun"
+                ]
+                
+                var log = {}
+                var sendMessage = ( message, callback ) =>
+                    setTimeout (
+                        () => callback ( message ),
+                        Math.random () * 7000
+                    )
+                
+                getKey = () => {
+                    let counter = 1;
+                    let key = new Date().toLocaleTimeString()
+                    for (let i in log) i.split('[')[0]===key&&counter++
+                    return counter>1 ? `${key}[${counter}]`: key
+                }
+                messages.forEach (
+                message => sendMessage ( message, ()=>{
+                   log = Object.assign(log,{[getKey()]:message})
+                }) )
+            </pre>
+        </div>
+    </div>
+    <div class="block-scheme">
+        <h1>Additional</h1>
+        <div id="additonalOne">
+            <pre>
+                    function User ( name ) {
+                        this.name=name
+                        var presence = false
+                        Object.defineProperty ( this, "presence", {
+                        get: function () {
+                            return presence?`${this.name} is present`:
+                            `${this.name} is absent` 
+                        },
+                        set: function ( isHere ) {
+                            (isHere==='+')||(isHere===true)||
+                            (isHere==='present')?presence=true:console.warn
+                            ('Incorrect value input. Maybe Invalid is here...')
+                        }
+                    })
+                    }
+                    
+                    let user = new User ( "Ivan" )
+                    console.info ( user.presence )
+                    user.presence='gffhfghfg'
+                    console.info ( user.presence )
+            </pre>
+        </div>
+    </div>
+    <div class="block-scheme">
+        <h1 class='black'>Additional #2</h1>
+        <div id="additonalTwo">
+        </div>
+    </div>
+
+    <script src="./hw10.js"></script>
+</body>
+
+</html>
